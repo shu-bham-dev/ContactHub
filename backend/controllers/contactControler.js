@@ -4,6 +4,11 @@ const getContacts = (req,res) =>{
 
 const postContacts = (req,res)=>{
     console.log(req.body);
+    const {name,email,phone} = req.body;
+    if(!name || !email || !phone){
+        res.status(400);
+        throw new Error("All fields must be present");
+    }
     res.status(200).json({message: "Create contacts"})
 }
 
