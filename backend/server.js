@@ -1,8 +1,10 @@
 const express = require('express');
 const errorHandler = require('./middleware/errorHandler');
+const connectDB = require('./config/dbConnection');
 const app = express();
 const port = 4000;
 
+connectDB();
 app.listen(port,()=>{
     console.log("Server listening on ",port);
 });
