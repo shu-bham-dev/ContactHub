@@ -32,11 +32,26 @@ const getContactByid = asyncHandler(async (req, res) => {
 })
 
 const updateContact = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: `Update contacts for ${req.params.id}` })
+    const contactByID = await contactSchema.findById(req.params.id)
+    if (!contactByID) {
+        res.status(404)
+        throw new Error('Contact not found')
+    }
+    const updatedContact = await contactSchema.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true }
+    )
+    res.status(200).json(updateContact)
 })
 
 const deleteContact = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: `Delete contacts for ${req.params.id}` })
+    const contact = await contactSchema.findByIdAndDelete(req.params.id)
+    if (!contact) {
+        res.status(404)
+        throw new Error('Contact not found')
+    }
+    res.status(200).json(contact)
 })
 
 module.exports = {
