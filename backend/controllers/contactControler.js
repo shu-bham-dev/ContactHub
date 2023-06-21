@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler')
 const contactSchema = require('../models/contactModel')
-const { mongoose } = require('mongoose')
 
 const getContacts = async (req, res) => {
     const Contacts = await contactSchema.find()
@@ -42,7 +41,7 @@ const updateContact = asyncHandler(async (req, res) => {
         req.body,
         { new: true }
     )
-    res.status(200).json(updateContact)
+    res.status(200).json(updatedContact)
 })
 
 const deleteContact = asyncHandler(async (req, res) => {
