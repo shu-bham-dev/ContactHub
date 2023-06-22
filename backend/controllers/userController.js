@@ -59,8 +59,7 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const getCurrentUser = asyncHandler(async (req, res) => {
-    const currentUser = 'xx'
-    res.status(200).json(`The current User is ${currentUser}`)
+    res.json(req.user)
 })
 
 module.exports = { getUser, getCurrentUser, registerUser, loginUser }
